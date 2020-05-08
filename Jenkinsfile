@@ -10,7 +10,7 @@ pipeline {
   }
   options {
     timeout(time: 1, unit: 'HOURS')
-    buildDiscarder(logRotator(numToKeepStr: '14'))
+    buildDiscarder(logRotator(numToKeepStr: '3'))
   }
   stages {
     stage('Build') {
@@ -25,12 +25,15 @@ pipeline {
     }
   }
   post {
-    changed {
+    unsuccessful {
         emailext (
           subject: "Jenkins Build '${env.JOB_NAME} [${env.BUILD_NUMBER}]' is ${currentBuild.currentResult}",
           body: "${env.JOB_NAME} build ${env.BUILD_NUMBER} changed state and is now ${currentBuild.currentResult}\n\nMore info at: ${env.BUILD_URL}",
           to: '${env.RECIPIENTS_SUBSTRATEE}'
         )
+    }
+    always {
+      cleanWs()
     }
   }
 }
