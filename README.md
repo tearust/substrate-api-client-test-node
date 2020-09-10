@@ -2,21 +2,27 @@
 
 This substrate node is used to test the [substrate-api-client](https://github.com/scs/substrate-api-client).
 
-## Build
+Follow these steps to prepare a local Substrate development environment :hammer_and_wrench:
 
-Install Rust:
+### Simple Setup
 
-```bash
-curl https://sh.rustup.rs -sSf | sh
-```
-
-Initialize your Wasm Build environment:
+Install all the required dependencies with a single command (be patient, this can take up to 30
+minutes).
 
 ```bash
-./scripts/init.sh
+curl https://getsubstrate.io -sSf | bash -s -- --fast
 ```
 
-Build Wasm and native code:
+### Manual Setup
+
+Find manual setup instructions at the
+[Substrate Developer Hub](https://substrate.dev/docs/en/knowledgebase/getting-started/#manual-installation).
+
+### Build
+
+Once the development environment is set up, build the node template. This command will build the
+[Wasm](https://substrate.dev/docs/en/knowledgebase/advanced/executor#wasm-execution) and
+[native](https://substrate.dev/docs/en/knowledgebase/advanced/executor#native-execution) code:
 
 ```bash
 cargo build --release
@@ -26,13 +32,13 @@ cargo build --release
 
 ### Single Node Development Chain
 
-Purge any existing developer chain state:
+Purge any existing dev chain state:
 
 ```bash
 ./target/release/node-template purge-chain --dev
 ```
 
-Start a development chain with:
+Start a dev chain:
 
 ```bash
 ./target/release/node-template --dev
