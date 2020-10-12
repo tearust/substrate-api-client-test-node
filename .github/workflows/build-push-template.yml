@@ -7,8 +7,10 @@ on:
 
 jobs:
   build-push-template:
+    if: ${{ github.repository == 'substrate-developer-hub/substrate-node-template' }}
     runs-on: ubuntu-18.04
     steps:
+<<<<<<< HEAD
     - uses: actions/checkout@v2
 
     - name: Build and push the node-template Docker image
@@ -39,10 +41,16 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+=======
+>>>>>>> upstream/master
     - name: Trigger playground inclusion
       uses: peter-evans/repository-dispatch@v1
       with:
         token: ${{ secrets.REPO_ACCESS_TOKEN }}
         repository: paritytech/substrate-playground
         event-type: template-updated
+<<<<<<< HEAD
         client-payload: '{"id": "node-template", "image": "${{ steps.env.outputs.image }}"}'
+=======
+        client-payload: '{"id": "node-template"}'
+>>>>>>> upstream/master
