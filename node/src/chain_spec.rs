@@ -153,7 +153,7 @@ fn testnet_genesis(
 			// Assign network admin rights.
 			key: root_key,
 		}),
-		template: Some(TemplateModuleConfig {
+		pallet_template: Some(TemplateModuleConfig {
 			some_double_map: vec![(1, 2, 3)],
 		})
 	}
