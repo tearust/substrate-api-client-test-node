@@ -8,6 +8,9 @@ set -e
 # Print all executed commands
 set -x
 
+# Install the desired toolchain
+rustup toolchain install $(cat rust-toolchain)
+
 # Install WASM32 for the desired toolchain
 rustup target add wasm32-unknown-unknown --toolchain $(cat rust-toolchain)
 
