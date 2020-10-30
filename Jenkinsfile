@@ -13,6 +13,11 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '3'))
   }
   stages {
+    stage('Update') {
+      steps {
+        sh './ci/install_wasm.sh'
+      }
+    }
     stage('Build') {
       steps {
         sh 'cargo build --release'
